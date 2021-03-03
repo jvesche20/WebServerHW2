@@ -2,6 +2,7 @@ const Express = require('express');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 
+// eslint-disable-next-line import/no-unresolved
 const Product = require('./models/product');
 
 const app = Express();
