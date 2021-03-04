@@ -77,10 +77,24 @@ app.delete('/products', async (request, response) => {
   });
 });
 
+app.delete('/users', async (request, response) => {
+  await doActionThatMightFailValidation(request, response, async () => {
+    response.sendStatus((await Product.deleteMany(request.query)).deletedCount > 0 ? 200 : 404);
+  });
+});
+
 app.delete('/products/:sku', async (request, response) => {
   await doActionThatMightFailValidation(request, response, async () => {
     response.sendStatus((await Product.deleteOne({
       sku: request.params.sku,
+    })).deletedCount > 0 ? 200 : 404);
+  });
+});
+
+app.delete('/users/:ssn', async (request, response) => {
+  await doActionThatMightFailValidation(request, response, async () => {
+    response.sentStatus((await Product.delteOne({
+      ssn: request.params.ssn,
     })).deletedCount > 0 ? 200 : 404);
   });
 });
