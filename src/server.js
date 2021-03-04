@@ -4,6 +4,8 @@ const Mongoose = require('mongoose');
 
 // eslint-disable-next-line import/no-unresolved
 const Product = require('./models/product');
+// eslint-disable-next-line import/no-unresolved
+const User = require('./models/users');
 
 const app = Express();
 
@@ -28,6 +30,12 @@ app.get('/products', async (request, response) => {
   });
 });
 
+app.get('/users', async (req, res) => {
+  await doActionThatMightFailValidation(req, res, async () => {
+    res.json(await User.find(req.query).select('-_id -__v'));
+  });
+});
+
 app.get('/products/:sku', async (request, response) => {
   await doActionThatMightFailValidation(request, response, async () => {
     const getResult = await Product.findOne({ sku: request.params.sku }).select('-_id -__v');
@@ -39,7 +47,24 @@ app.get('/products/:sku', async (request, response) => {
   });
 });
 
+app.get('/users/:ssn', async (request, res) => {
+  await doActionThatMightFailValidation(request, res, async () => {
+    const getResult = await User.findOne({ ssn: request.params.ssn }).select('-_id -__v');
+    if (getResult != null) {
+      res.json(getResult);
+    } else {
+      res.sendStatus(404);
+    }
+  });
+});
+
 app.post('/products', async (request, response) => {
+  await doActionThatMightFailValidation(request, response, async () => {
+    await new Product(request.body).save();
+    response.sendStatus(201);
+  });
+});
+app.post('/users', async (request, response) => {
   await doActionThatMightFailValidation(request, response, async () => {
     await new Product(request.body).save();
     response.sendStatus(201);
