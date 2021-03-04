@@ -93,7 +93,7 @@ app.delete('/products/:sku', async (request, response) => {
 
 app.delete('/users/:ssn', async (request, response) => {
   await doActionThatMightFailValidation(request, response, async () => {
-    response.sentStatus((await Product.delteOne({
+    response.sendStatus((await Product.deleteOne({
       ssn: request.params.ssn,
     })).deletedCount > 0 ? 200 : 404);
   });
@@ -111,6 +111,18 @@ app.put('/products/:sku', async (request, response) => {
   });
 });
 
+app.put('/users/:ssn', async (request, response) => {
+  const { ssn } = request.params;
+  const user = request.body;
+  user.ssn = ssn;
+  await doActionThatMightFailValidation(request, response, async () => {
+    await Product.findOneAndReplace(({ ssn }, user, {
+      upsert: true,
+    }));
+    response.sendStatus(200);
+  });
+});
+
 app.patch('/products/:sku', async (request, response) => {
   const { sku } = request.params;
   const product = request.body;
@@ -123,6 +135,23 @@ app.patch('/products/:sku', async (request, response) => {
       .select('-_id -__v');
     if (patchResult != null) {
       response.json(patchResult);
+    } else {
+      response.sendStatus(404);
+    }
+  });
+});
+app.patch('/users/:ssn', async (request, response) => {
+  const { ssn } = request.params;
+  const user = request.body;
+  delete user.ssn;
+  await doActionThatMightFailValidation(request, response, async () => {
+    const patchRequest = await user
+      .findOneAndUpdate({ ssn }, user, {
+        new: true,
+      })
+      .select('-_id -__v');
+    if (patchRequest != null) {
+      response.json(patchRequest);
     } else {
       response.sendStatus(404);
     }
