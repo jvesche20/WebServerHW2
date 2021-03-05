@@ -140,6 +140,7 @@ app.patch('/products/:sku', async (request, response) => {
     }
   });
 });
+
 app.patch('/users/:ssn', async (request, response) => {
   const { ssn } = request.params;
   const user = request.body;
