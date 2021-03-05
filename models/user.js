@@ -2,7 +2,7 @@ const Mongoose = require('mongoose');
 
 require('bob-mongoose-currency').loadType(Mongoose);
 
-module.export = Mongoose.model('User', new Mongoose.Schema({
+module.exports = Mongoose.model('User', new Mongoose.Schema({
 
   firstName: {
     type: String,

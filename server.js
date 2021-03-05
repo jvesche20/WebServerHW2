@@ -2,10 +2,8 @@ const Express = require('express');
 const BodyParser = require('body-parser');
 const Mongoose = require('mongoose');
 
-// eslint-disable-next-line import/no-unresolved
 const Product = require('./models/product');
-// eslint-disable-next-line import/no-unresolved
-const User = require('./models/users');
+const User = require('./models/user');
 
 const app = Express();
 
@@ -116,9 +114,9 @@ app.put('/users/:ssn', async (request, response) => {
   const user = request.body;
   user.ssn = ssn;
   await doActionThatMightFailValidation(request, response, async () => {
-    await Product.findOneAndReplace(({ ssn }, user, {
+    await Product.findOneAndReplace({ ssn }, user, {
       upsert: true,
-    }));
+    });
     response.sendStatus(200);
   });
 });
