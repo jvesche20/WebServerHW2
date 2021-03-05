@@ -1,9 +1,6 @@
 const Mongoose = require('mongoose');
 
-require('bob-mongoose-currency').loadType(Mongoose);
-
 module.exports = Mongoose.model('User', new Mongoose.Schema({
-
   firstName: {
     type: String,
     required: true,
@@ -24,7 +21,6 @@ module.exports = Mongoose.model('User', new Mongoose.Schema({
     unique: true,
     min: 9,
     max: 9,
-
   },
   address: {
     type: String,
@@ -34,9 +30,9 @@ module.exports = Mongoose.model('User', new Mongoose.Schema({
     type: String,
     required: false,
   },
+}, {
   toJSON: {
     getters: true,
     virtuals: false,
   },
-
 }));
