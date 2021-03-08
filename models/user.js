@@ -1,6 +1,14 @@
 const Mongoose = require('mongoose');
 
 module.exports = Mongoose.model('User', new Mongoose.Schema({
+
+  ssn: {
+    type: String,
+    required: true,
+    unique: true,
+    min: 9,
+    max: 9,
+  },
   firstName: {
     type: String,
     required: true,
@@ -14,13 +22,6 @@ module.exports = Mongoose.model('User', new Mongoose.Schema({
     required: true,
     min: 0,
     max: 130,
-  },
-  ssn: {
-    type: String,
-    required: true,
-    unique: true,
-    min: 9,
-    max: 9,
   },
   address: {
     type: String,

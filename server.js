@@ -47,7 +47,7 @@ app.patch('/products/:sku', productPatches.productPatch);
 app.patch('/users/:ssn', userPatches.userPatch);
 
 (async () => {
-  await Mongoose.connect('mongodb+srv://admin:admin@cluster0-cde82.mongodb.net/mongodb?retryWrites=true&w=majority', {
+  await Mongoose.connect('mongodb+srv://admin:admin@cluster0.cgc8h.mongodb.net/Cluster0?retryWrites=true&w=majority', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useFindAndModify: false,
