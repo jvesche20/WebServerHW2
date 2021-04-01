@@ -1,5 +1,5 @@
 {
-  "name": "webserverhw2",
+  "name": "webserverhw3",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",
@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/jvesche20/WebServerHW2.git"
+    "url": "git+https://github.com/jvesche20/WebServerHW3.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/jvesche20/WebServerHW2/issues"
+    "url": "https://github.com/jvesche20/WebServerHW3/issues"
   },
-  "homepage": "https://github.com/jvesche20/WebServerHW2#readme",
+  "homepage": "https://github.com/jvesche20/WebServerHW3#readme",
   "dependencies": {
     "bob-mongoose-currency": "^0.2.1",
     "body-parser": "^1.19.0",
