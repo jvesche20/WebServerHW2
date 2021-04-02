@@ -1,0 +1,31 @@
+{
+  "name": "webserverhw3",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint src/**/*.js --fix"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jvesche20/WebServerHW3.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jvesche20/WebServerHW3/issues"
+  },
+  "homepage": "https://github.com/jvesche20/WebServerHW3#readme",
+  "dependencies": {
+    "bob-mongoose-currency": "^0.2.1",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.11.15",
+    "http-status-codes": "^2.1.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.21.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
+}
